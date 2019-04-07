@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
+ * Array representation of the Binary Tree.
+ * Each node only has the index where it is stored.
+ * It extends AbstractBinaryTree class.
  * @author Naman Gupta
  **/
 public class ArrayBinaryTree<E> extends AbstractBinaryTree<E> {

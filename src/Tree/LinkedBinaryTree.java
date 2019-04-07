@@ -1,12 +1,12 @@
-/**
- * @Copyright by Naman Gupta 2019
- */
 package Tree;
 
 import java.util.*;
 import java.util.function.Consumer;
 
 /**
+ * Linked representation of the Binary Tree. In this each node
+ * has reference to its childs.
+ * It extends AbstractBinaryTree class.
  * @author Naman Gupta
  **/
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {

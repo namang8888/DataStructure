@@ -1,11 +1,11 @@
-/**
- * @Copyright by Naman Gupta 2019
- */
 package Tree;
 
 import java.util.*;
 
 /**
+ * It is an abstract class that represents Binary tree.
+ * It implements certain methods whose implementation are irrespective of the type of binary tree.
+ * All classes that represents binary tree would have to extends this class.
  * @author Naman Gupta
  **/
 public abstract class AbstractBinaryTree<E> extends AbstractTree implements BinaryTree {

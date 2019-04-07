@@ -1,9 +1,8 @@
-/**
- * @Copyright by Naman Gupta 2019
- */
 package Tree;
 
 /**
+ * An abstract class that represents a generic tree.
+ * All those classes that represents a tree would have to extends this class.
  * @author Naman Gupta
  **/
 public abstract class AbstractTree<E> implements Tree<E> {

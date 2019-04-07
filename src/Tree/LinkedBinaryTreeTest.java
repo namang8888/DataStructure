@@ -1,6 +1,3 @@
-/**
- * @Copyright by Naman Gupta 2019
- */
 package Tree;
 
 import java.util.Iterator;
