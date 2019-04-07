@@ -13,7 +13,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     protected Node<E> root = null;
     private int size = 0;
-    private String traversalType = Traversal.PREORDER.getTraversalType();
+
 
     protected static class Node<E> implements Position<E>{
 
@@ -30,7 +30,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
 
         public E getElement() {
-            return null;
+            return element;
         }
 
         public void setElement(E e) {
@@ -145,7 +145,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         if(!isEmpty())
             throw new IllegalStateException("Invalid Operation. Tree already has a root");
         size++;
-        return createNode(e,null,null,null);
+        root = createNode(e,null,null,null);
+        return root;
     }
 
     /**
@@ -263,129 +264,5 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
         node.setParent(node);
         return node.getElement();
-    }
-
-    /**
-     * This class adapts the iteration produced by positions to return elements.
-     * @param <E>
-     */
-    private class ElementIterator<E> implements Iterator<E>{
-
-        Iterator<Position<E>> positionIterator = (Iterator)positions().iterator();
-
-        public void remove() {
-            positionIterator.remove();
-        }
-
-        public boolean hasNext() {
-            return positionIterator.hasNext();
-        }
-
-        public E next() {
-            return positionIterator.next().getElement();
-        }
-    }
-
-    /**
-     * Returns an iterator for all elements in the tree (so that the tree itself is Iterable).
-     *
-     * @return
-     */
-    public Iterator<E> iterator() {
-        return null;
-    }
-
-    /**
-     * Returns an iterable collection of all positions of the tree.
-     *
-     * @return
-     */
-    public Iterable<Position<E>> positions() {
-        List<Position<E>> iterablePositions = new ArrayList<Position<E>>(size);
-
-        if(!isEmpty()){
-            if(traversalType.equals(Traversal.INORDER.getTraversalType())){
-                inOrder(root(), iterablePositions);
-            }else if(traversalType.equals(Traversal.PREORDER.getTraversalType())){
-                preOrder(root(), iterablePositions);
-            }else if(traversalType.equals(Traversal.POSTORDER.getTraversalType())){
-                postOrder(root(), iterablePositions);
-            }else if(traversalType.equals(Traversal.BREADTHFIRST.getTraversalType())){
-                breadthFirst(root(), iterablePositions);
-            }
-        }
-
-        return iterablePositions;
-    }
-
-    /**
-     * Adds the Positions of the tree in list, using InOrder Traversal.
-     * @param p
-     * @param iterablePositions
-     */
-    private void inOrder(Position<E> p, List<Position<E>> iterablePositions) {
-
-        if(left(p) != null)
-            inOrder(left(p),iterablePositions);
-
-        iterablePositions.add(p);
-
-        if(right(p) != null)
-            inOrder(right(p),iterablePositions);
-
-    }
-
-    /**
-     * Adds the Positions of the tree in list, using PreOrder Traversal.
-     * @param p
-     * @param iterablePositions
-     */
-    private void preOrder(Position<E> p, List<Position<E>> iterablePositions) {
-        iterablePositions.add(p);
-
-        if(left(p) != null)
-            preOrder(left(p),iterablePositions);
-
-        if(right(p) != null)
-            preOrder(right(p),iterablePositions);
-
-    }
-
-    /**
-     * Adds the Positions of the tree in list, using PostOrder Traversal.
-     * @param p
-     * @param iterablePositions
-     */
-    private void postOrder(Position<E> p, List<Position<E>> iterablePositions) {
-        if(left(p) != null)
-            preOrder(left(p),iterablePositions);
-
-        if(right(p) != null)
-            preOrder(right(p),iterablePositions);
-
-        iterablePositions.add(p);
-    }
-
-    /**
-     * Adds the Positions of the tree in list, using Breadth First Traversal.
-     * @param p
-     * @param iterablePositions
-     */
-    private void breadthFirst(Position<E> p, List<Position<E>> iterablePositions) {
-        Queue<Position<E>> queue = new LinkedList<Position<E>>();
-        queue.offer(p);
-
-        while(!queue.isEmpty()){
-            Position<E> temp = queue.poll();
-            iterablePositions.add(temp);
-
-            if(left(p) != null)
-                queue.offer(left(p));
-
-            if(right(p) != null)
-                queue.offer(right(p));
-        }
-
-
     }
 }
